@@ -1,0 +1,16 @@
+export const CARDS: string[] = [
+  "Der Weg ist frei.",
+  "Warte noch ab.",
+  "Du weißt die Antwort schon.",
+  "Vertraue deinem ersten Impuls.",
+  "Es braucht noch etwas Geduld.",
+  "Lass los, was dich zurückhält.",
+  "Ein neuer Anfang liegt bereit.",
+  "Frag dich, was du wirklich willst.",
+  "Die Zeit ist noch nicht reif.",
+  "Folge dem, was sich leicht anfühlt.",
+  "Es gibt mehr als eine richtige Antwort.",
+  "Sei mutig – der nächste Schritt zählt.",
+  "Ruhe bewahren, dann wird es klar.",
+  "Dein Bauchgefühl hat schon entschieden.",
+];
