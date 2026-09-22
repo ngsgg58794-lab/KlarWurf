@@ -20,6 +20,13 @@ const START_LABEL: Record<Method, string> = {
   card: "Karte ziehen",
 };
 
+const ANSAGE: Record<Method, string> = {
+  coin: "Denke fest an deine Frage, atme einmal tief ein und aus und starte dann den Wurf.",
+  pendulum:
+    "Denke fest an deine Frage, atme einmal tief ein und aus und starte dann das Pendel.",
+  card: "Denke fest an deine Frage, atme einmal tief ein und aus und ziehe dann deine Karte.",
+};
+
 export default function PrepareScreen({ method, onBack, onStart }: Props) {
   const [question, setQuestion] = useState("");
   const [headsMeaning, setHeadsMeaning] = useState("");
@@ -38,7 +45,7 @@ export default function PrepareScreen({ method, onBack, onStart }: Props) {
         <div className="animate-breathe h-20 w-20 rounded-full border border-gold/60" />
 
         <p className="animate-fade-up font-serif text-2xl leading-relaxed text-ivory">
-          Denke fest an deine Frage, atme einmal tief ein und aus.
+          {ANSAGE[method]}
         </p>
 
         <div className="animate-fade-up w-full space-y-4">
