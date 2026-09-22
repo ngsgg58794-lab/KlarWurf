@@ -14,7 +14,24 @@ const METHODS: { method: Method; label: string; icon: typeof CoinIcon }[] = [
 
 export default function HomeScreen({ onSelectMethod }: Props) {
   return (
-    <div className="flex min-h-dvh flex-col items-center px-6 py-12">
+    <div className="relative flex min-h-dvh flex-col items-center overflow-hidden px-6 py-12">
+      <svg
+        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[880px] w-[880px] -translate-x-1/2 -translate-y-1/2"
+        viewBox="0 0 200 200"
+      >
+        <circle
+          cx="100"
+          cy="100"
+          r="90"
+          fill="none"
+          stroke="var(--color-gold)"
+          strokeWidth="4"
+          opacity="0.05"
+          style={{ filter: "blur(6px)" }}
+        />
+        <circle cx="100" cy="100" r="90" fill="none" stroke="var(--color-gold)" strokeWidth="1" opacity="0.11" />
+      </svg>
+
       <div className="animate-fade-up pt-4 text-center">
         <Logo className="mx-auto h-16 w-16" />
         <h1 className="mt-3 font-serif text-5xl font-semibold tracking-wide text-gold-light">
