@@ -2,10 +2,15 @@ import { useState } from "react";
 import type { Method } from "../types";
 import { CATEGORIES } from "../types";
 
+export interface CoinMeaning {
+  heads: string;
+  tails: string;
+}
+
 interface Props {
   method: Method;
   onBack: () => void;
-  onStart: (category: string, question: string) => void;
+  onStart: (category: string, question: string, coinMeaning?: CoinMeaning) => void;
 }
 
 const START_LABEL: Record<Method, string> = {
@@ -17,6 +22,8 @@ const START_LABEL: Record<Method, string> = {
 export default function PrepareScreen({ method, onBack, onStart }: Props) {
   const [question, setQuestion] = useState("");
   const [category, setCategory] = useState<string>(CATEGORIES[3]);
+  const [headsMeaning, setHeadsMeaning] = useState("");
+  const [tailsMeaning, setTailsMeaning] = useState("");
 
   return (
     <div className="flex min-h-dvh flex-col items-center justify-between px-6 py-12">
@@ -57,11 +64,36 @@ export default function PrepareScreen({ method, onBack, onStart }: Props) {
               </button>
             ))}
           </div>
+
+          {method === "coin" && (
+            <div className="flex gap-3">
+              <input
+                value={headsMeaning}
+                onChange={(e) => setHeadsMeaning(e.target.value)}
+                placeholder="Kopf bedeutet …"
+                className="w-1/2 rounded-xl border border-line bg-surface px-3 py-2.5 text-center text-xs text-ivory placeholder:text-muted focus:border-gold focus:outline-none"
+              />
+              <input
+                value={tailsMeaning}
+                onChange={(e) => setTailsMeaning(e.target.value)}
+                placeholder="Zahl bedeutet …"
+                className="w-1/2 rounded-xl border border-line bg-surface px-3 py-2.5 text-center text-xs text-ivory placeholder:text-muted focus:border-gold focus:outline-none"
+              />
+            </div>
+          )}
         </div>
       </div>
 
       <button
-        onClick={() => onStart(category, question.trim())}
+        onClick={() =>
+          onStart(
+            category,
+            question.trim(),
+            method === "coin"
+              ? { heads: headsMeaning.trim(), tails: tailsMeaning.trim() }
+              : undefined,
+          )
+        }
         className="w-full max-w-sm rounded-2xl bg-gold px-6 py-4 font-serif text-xl font-semibold text-ink transition-transform duration-300 active:scale-95"
       >
         {START_LABEL[method]}

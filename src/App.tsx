@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from "uuid";
 import type { Entry, Method, Reaction } from "./types";
 import { saveEntry, updateEntry } from "./lib/storage";
 import HomeScreen from "./screens/HomeScreen";
-import PrepareScreen from "./screens/PrepareScreen";
+import PrepareScreen, { type CoinMeaning } from "./screens/PrepareScreen";
 import CoinScreen from "./screens/CoinScreen";
 import PendulumScreen from "./screens/PendulumScreen";
 import CardScreen from "./screens/CardScreen";
@@ -12,7 +12,13 @@ import ResultScreen from "./screens/ResultScreen";
 type Screen =
   | { name: "home" }
   | { name: "prepare"; method: Method }
-  | { name: "action"; method: Method; category: string; question: string }
+  | {
+      name: "action";
+      method: Method;
+      category: string;
+      question: string;
+      coinMeaning?: CoinMeaning;
+    }
   | { name: "result"; entry: Entry };
 
 export default function App() {
@@ -26,12 +32,12 @@ export default function App() {
     setScreen({ name: "prepare", method });
   }
 
-  function handleStart(category: string, question: string) {
+  function handleStart(category: string, question: string, coinMeaning?: CoinMeaning) {
     if (screen.name !== "prepare") return;
-    setScreen({ name: "action", method: screen.method, category, question });
+    setScreen({ name: "action", method: screen.method, category, question, coinMeaning });
   }
 
-  function handleActionComplete(result: string) {
+  function handleActionComplete(result: string, note: string | null = null) {
     if (screen.name !== "action") return;
     const entry: Entry = {
       id: uuidv4(),
@@ -40,7 +46,7 @@ export default function App() {
       method: screen.method,
       result,
       reaction: null,
-      note: null,
+      note,
       timestamp: new Date().toISOString(),
     };
     saveEntry(entry);
@@ -63,7 +69,9 @@ export default function App() {
 
     case "action":
       if (screen.method === "coin") {
-        return <CoinScreen onComplete={handleActionComplete} />;
+        return (
+          <CoinScreen onComplete={handleActionComplete} coinMeaning={screen.coinMeaning} />
+        );
       }
       if (screen.method === "pendulum") {
         return <PendulumScreen onComplete={handleActionComplete} />;

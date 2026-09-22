@@ -27,9 +27,14 @@ export default function ResultScreen({ entry, onReact, onRestart }: Props) {
           <p className="animate-fade-up text-sm text-muted">„{entry.question}“</p>
         )}
 
-        <p className="animate-fade-up font-serif text-5xl font-semibold leading-tight text-gold-light">
-          {entry.result}
-        </p>
+        <div>
+          <p className="animate-fade-up font-serif text-5xl font-semibold leading-tight text-gold-light">
+            {entry.result}
+          </p>
+          {entry.note && (
+            <p className="animate-fade-up mt-2 text-base text-muted">{entry.note}</p>
+          )}
+        </div>
 
         <div className="animate-fade-up mt-6 w-full">
           <p className="mb-3 text-xs uppercase tracking-[0.2em] text-muted">

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { swingPendulum, type PendulumAnswer } from "../lib/random";
 
 interface Props {
-  onComplete: (result: string) => void;
+  onComplete: (result: string, note?: string | null) => void;
 }
 
 const SWING_ANGLE: Record<PendulumAnswer, string> = {

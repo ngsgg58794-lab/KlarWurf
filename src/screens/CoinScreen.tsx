@@ -1,22 +1,28 @@
 import { useEffect, useState } from "react";
 import { flipCoin } from "../lib/random";
+import type { CoinMeaning } from "./PrepareScreen";
 
 interface Props {
-  onComplete: (result: string) => void;
+  onComplete: (result: string, note?: string | null) => void;
+  coinMeaning?: CoinMeaning;
 }
 
-export default function CoinScreen({ onComplete }: Props) {
+export default function CoinScreen({ onComplete, coinMeaning }: Props) {
   const [result] = useState(flipCoin);
   const [phase, setPhase] = useState<"spinning" | "revealed">("spinning");
 
+  const meaning =
+    result === "Kopf" ? coinMeaning?.heads : coinMeaning?.tails;
+  const note = meaning ? meaning : null;
+
   useEffect(() => {
     const reveal = setTimeout(() => setPhase("revealed"), 1600);
-    const complete = setTimeout(() => onComplete(result), 2500);
+    const complete = setTimeout(() => onComplete(result, note), 2500);
     return () => {
       clearTimeout(reveal);
       clearTimeout(complete);
     };
-  }, [onComplete, result]);
+  }, [onComplete, result, note]);
 
   return (
     <div className="flex min-h-dvh flex-col items-center justify-center gap-10 px-6" style={{ perspective: "800px" }}>
@@ -39,9 +45,12 @@ export default function CoinScreen({ onComplete }: Props) {
         </div>
       </div>
 
-      <p className={`font-serif text-3xl text-gold-light ${phase === "revealed" ? "animate-fade-up" : "opacity-0"}`}>
-        {phase === "revealed" ? result : " "}
-      </p>
+      <div className={`text-center ${phase === "revealed" ? "animate-fade-up" : "opacity-0"}`}>
+        <p className="font-serif text-3xl text-gold-light">
+          {phase === "revealed" ? result : " "}
+        </p>
+        {note && <p className="mt-1 text-sm text-muted">{note}</p>}
+      </div>
     </div>
   );
 }

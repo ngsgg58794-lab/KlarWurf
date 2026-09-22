@@ -3,7 +3,7 @@ import { drawCard } from "../lib/random";
 import { CARDS } from "../data/cards";
 
 interface Props {
-  onComplete: (result: string) => void;
+  onComplete: (result: string, note?: string | null) => void;
 }
 
 export default function CardScreen({ onComplete }: Props) {
