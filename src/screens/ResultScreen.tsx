@@ -5,7 +5,6 @@ interface Props {
   entry: Entry;
   onReact: (reaction: Reaction) => void;
   onRestart: () => void;
-  onShowHistory: () => void;
 }
 
 const FEEDBACK: Record<"up" | "down", string> = {
@@ -13,7 +12,7 @@ const FEEDBACK: Record<"up" | "down", string> = {
   down: "Dann kanntest du die Antwort wohl schon.",
 };
 
-export default function ResultScreen({ entry, onReact, onRestart, onShowHistory }: Props) {
+export default function ResultScreen({ entry, onReact, onRestart }: Props) {
   const [reaction, setReaction] = useState<Reaction>(entry.reaction);
 
   function handleReact(next: "up" | "down") {
@@ -67,20 +66,12 @@ export default function ResultScreen({ entry, onReact, onRestart, onShowHistory 
         </div>
       </div>
 
-      <div className="flex w-full max-w-sm flex-col gap-3">
-        <button
-          onClick={onRestart}
-          className="w-full rounded-2xl bg-gold px-6 py-4 font-serif text-xl font-semibold text-ink transition-transform duration-300 active:scale-95"
-        >
-          Neue Frage
-        </button>
-        <button
-          onClick={onShowHistory}
-          className="text-xs uppercase tracking-[0.2em] text-muted transition-colors duration-300 hover:text-gold"
-        >
-          Verlauf ansehen
-        </button>
-      </div>
+      <button
+        onClick={onRestart}
+        className="w-full max-w-sm rounded-2xl bg-gold px-6 py-4 font-serif text-xl font-semibold text-ink transition-transform duration-300 active:scale-95"
+      >
+        Neue Frage
+      </button>
     </div>
   );
 }

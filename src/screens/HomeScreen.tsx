@@ -3,8 +3,6 @@ import { CoinIcon, PendulumIcon, CardIcon } from "../components/icons";
 
 interface Props {
   onSelectMethod: (method: Method) => void;
-  onShowHistory: () => void;
-  hasHistory: boolean;
 }
 
 const METHODS: { method: Method; label: string; icon: typeof CoinIcon }[] = [
@@ -13,10 +11,10 @@ const METHODS: { method: Method; label: string; icon: typeof CoinIcon }[] = [
   { method: "card", label: "Karte", icon: CardIcon },
 ];
 
-export default function HomeScreen({ onSelectMethod, onShowHistory, hasHistory }: Props) {
+export default function HomeScreen({ onSelectMethod }: Props) {
   return (
-    <div className="flex min-h-dvh flex-col items-center justify-between px-6 py-12">
-      <div className="animate-fade-up text-center">
+    <div className="flex min-h-dvh flex-col items-center px-6 py-12">
+      <div className="animate-fade-up pt-8 text-center">
         <h1 className="font-serif text-5xl font-semibold tracking-wide text-gold-light">
           KlarWurf
         </h1>
@@ -25,7 +23,7 @@ export default function HomeScreen({ onSelectMethod, onShowHistory, hasHistory }
         </p>
       </div>
 
-      <div className="flex w-full max-w-sm flex-col gap-4">
+      <div className="flex w-full max-w-sm flex-1 flex-col justify-center gap-4">
         {METHODS.map(({ method, label, icon: Icon }, i) => (
           <button
             key={method}
@@ -38,14 +36,6 @@ export default function HomeScreen({ onSelectMethod, onShowHistory, hasHistory }
           </button>
         ))}
       </div>
-
-      <button
-        onClick={onShowHistory}
-        disabled={!hasHistory}
-        className="mt-10 text-xs uppercase tracking-[0.2em] text-muted transition-colors duration-300 disabled:opacity-0 enabled:hover:text-gold"
-      >
-        Verlauf ansehen
-      </button>
     </div>
   );
 }

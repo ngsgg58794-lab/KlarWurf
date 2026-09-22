@@ -8,9 +8,10 @@
   --color-surface: #0e0e0e;
   --color-surface-raised: #161513;
   --color-line: #2a2620;
-  --color-gold: #d4af37;
-  --color-gold-light: #f0d584;
-  --color-gold-dark: #a5811f;
+  --color-gold-shine: #f8ecc9;
+  --color-gold: #c9a662;
+  --color-gold-light: #e3cb95;
+  --color-gold-dark: #7c5e2e;
   --color-ivory: #f4f1ea;
   --color-muted: #9a948a;
 }

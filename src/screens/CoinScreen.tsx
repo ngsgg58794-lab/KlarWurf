@@ -24,14 +24,18 @@ export default function CoinScreen({ onComplete }: Props) {
         className={phase === "spinning" ? "animate-coin-flip" : ""}
         style={{ transformStyle: "preserve-3d" }}
       >
-        <div className="flex h-40 w-40 items-center justify-center rounded-full border-2 border-gold bg-gradient-to-br from-gold-light via-gold to-gold-dark shadow-[0_0_40px_rgba(212,175,55,0.35)]">
-          <span
-            className={`text-4xl font-bold text-ink ${
-              phase === "revealed" ? "font-serif" : "font-sans"
-            }`}
-          >
-            {phase === "revealed" ? result : "?"}
-          </span>
+        <div
+          className="flex h-40 w-40 items-center justify-center rounded-full border border-gold-dark shadow-[0_0_36px_rgba(201,166,98,0.25),inset_0_-6px_14px_rgba(0,0,0,0.35),inset_0_4px_10px_rgba(248,236,201,0.5)]"
+          style={{
+            background:
+              "radial-gradient(circle at 34% 28%, var(--color-gold-shine) 0%, var(--color-gold-light) 28%, var(--color-gold) 62%, var(--color-gold-dark) 100%)",
+          }}
+        >
+          {phase === "revealed" ? (
+            <span className="font-serif text-4xl font-bold text-ink">{result}</span>
+          ) : (
+            <div className="h-12 w-12 rounded-full border border-ink/25" />
+          )}
         </div>
       </div>
 

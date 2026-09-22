@@ -24,7 +24,7 @@ export default function CardScreen({ onComplete }: Props) {
   return (
     <div className="flex min-h-dvh flex-col items-center justify-center gap-10 px-6" style={{ perspective: "1000px" }}>
       <div
-        className={`flex h-72 w-48 items-center justify-center rounded-2xl border-2 border-gold p-6 text-center shadow-[0_0_50px_rgba(212,175,55,0.2)] ${
+        className={`flex h-72 w-48 items-center justify-center rounded-2xl border-2 border-gold p-6 text-center shadow-[0_0_50px_rgba(201,166,98,0.2)] ${
           phase === "flipping" || phase === "revealed" ? "animate-card-reveal" : ""
         } ${phase === "hidden" ? "bg-surface-raised" : "bg-gradient-to-br from-surface-raised to-ink"}`}
       >

@@ -36,8 +36,8 @@ export default function PendulumScreen({ onComplete }: Props) {
             ["--swing-angle" as string]: SWING_ANGLE[result],
           }}
         >
-          <line x1="100" y1="20" x2="100" y2="140" stroke="#d4af37" strokeWidth="2" />
-          <circle cx="100" cy="152" r="14" fill="#d4af37" />
+          <line x1="100" y1="20" x2="100" y2="140" stroke="var(--color-gold)" strokeWidth="2" />
+          <circle cx="100" cy="152" r="14" fill="var(--color-gold)" />
         </g>
       </svg>
 
