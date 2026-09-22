@@ -16,7 +16,8 @@ export default function HomeScreen({ onSelectMethod }: Props) {
   return (
     <div className="relative flex min-h-dvh flex-col items-center overflow-hidden px-6 py-12">
       <svg
-        className="pointer-events-none absolute left-1/2 top-0 -z-10 h-[820px] w-[820px] -translate-x-1/2 -translate-y-[68%]"
+        className="pointer-events-none absolute left-1/2 top-1/2 -z-10 h-[880px] w-[880px] -translate-x-1/2 -translate-y-1/2"
+        style={{ clipPath: "inset(0 0 50% 0)" }}
         viewBox="0 0 200 200"
       >
         <circle
