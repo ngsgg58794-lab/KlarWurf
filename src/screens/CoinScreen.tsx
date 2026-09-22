@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { flipCoin } from "../lib/random";
+import { hapticReveal } from "../lib/haptics";
 import type { CoinMeaning } from "./PrepareScreen";
 
 interface Props {
@@ -16,7 +17,10 @@ export default function CoinScreen({ onComplete, coinMeaning }: Props) {
   const note = meaning ? meaning : null;
 
   useEffect(() => {
-    const reveal = setTimeout(() => setPhase("revealed"), 1600);
+    const reveal = setTimeout(() => {
+      setPhase("revealed");
+      hapticReveal();
+    }, 1600);
     const complete = setTimeout(() => onComplete(result, note), 2500);
     return () => {
       clearTimeout(reveal);

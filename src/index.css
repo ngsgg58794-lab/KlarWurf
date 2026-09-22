@@ -110,15 +110,16 @@ body {
 @keyframes breathe {
   0%,
   100% {
-    transform: scale(1);
-    opacity: 0.85;
+    transform: scale(0.85);
+    opacity: 0.6;
   }
-  50% {
-    transform: scale(1.06);
+  45%,
+  55% {
+    transform: scale(1.15);
     opacity: 1;
   }
 }
 
 .animate-breathe {
-  animation: breathe 3.2s ease-in-out infinite;
+  animation: breathe 8s ease-in-out infinite;
 }

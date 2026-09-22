@@ -58,6 +58,11 @@ export default function App() {
     updateEntry(screen.entry.id, { reaction });
   }
 
+  function handleNoteChange(note: string | null) {
+    if (screen.name !== "result") return;
+    updateEntry(screen.entry.id, { note });
+  }
+
   switch (screen.name) {
     case "home":
       return <HomeScreen onSelectMethod={handleSelectMethod} />;
@@ -80,7 +85,12 @@ export default function App() {
 
     case "result":
       return (
-        <ResultScreen entry={screen.entry} onReact={handleReact} onRestart={goHome} />
+        <ResultScreen
+          entry={screen.entry}
+          onReact={handleReact}
+          onNoteChange={handleNoteChange}
+          onRestart={goHome}
+        />
       );
   }
 }

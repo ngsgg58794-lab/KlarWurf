@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { drawCard } from "../lib/random";
 import { CARDS } from "../data/cards";
+import { hapticReveal } from "../lib/haptics";
 
 interface Props {
   onComplete: (result: string, note?: string | null) => void;
@@ -12,7 +13,10 @@ export default function CardScreen({ onComplete }: Props) {
 
   useEffect(() => {
     const flip = setTimeout(() => setPhase("flipping"), 500);
-    const reveal = setTimeout(() => setPhase("revealed"), 1100);
+    const reveal = setTimeout(() => {
+      setPhase("revealed");
+      hapticReveal();
+    }, 1100);
     const complete = setTimeout(() => onComplete(result), 2400);
     return () => {
       clearTimeout(flip);

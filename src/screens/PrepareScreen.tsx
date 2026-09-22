@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { Method } from "../types";
 
 const DEFAULT_CATEGORY = "Allgemein";
@@ -31,6 +31,14 @@ export default function PrepareScreen({ method, onBack, onStart }: Props) {
   const [question, setQuestion] = useState("");
   const [headsMeaning, setHeadsMeaning] = useState("");
   const [tailsMeaning, setTailsMeaning] = useState("");
+  const [breathPhase, setBreathPhase] = useState<"ein" | "aus">("ein");
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setBreathPhase((phase) => (phase === "ein" ? "aus" : "ein"));
+    }, 4000);
+    return () => clearInterval(id);
+  }, []);
 
   return (
     <div className="flex min-h-dvh flex-col items-center justify-between px-6 py-12">
@@ -42,7 +50,12 @@ export default function PrepareScreen({ method, onBack, onStart }: Props) {
       </button>
 
       <div className="flex w-full max-w-sm flex-1 flex-col items-center justify-center gap-8 text-center">
-        <div className="animate-breathe h-20 w-20 rounded-full border border-gold/60" />
+        <div className="flex flex-col items-center gap-3">
+          <div className="animate-breathe h-20 w-20 rounded-full border border-gold/60" />
+          <span className="text-xs uppercase tracking-[0.2em] text-muted">
+            {breathPhase === "ein" ? "Einatmen" : "Ausatmen"}
+          </span>
+        </div>
 
         <p className="animate-fade-up font-serif text-2xl leading-relaxed text-ivory">
           {ANSAGE[method]}

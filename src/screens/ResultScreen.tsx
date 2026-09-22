@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { Entry, Reaction } from "../types";
 
 interface Props {
   entry: Entry;
   onReact: (reaction: Reaction) => void;
+  onNoteChange: (note: string | null) => void;
   onRestart: () => void;
 }
 
@@ -17,13 +18,25 @@ const FEEDBACK_UNKLAR: Record<"up" | "down", string> = {
   down: "Dann ist es vielleicht noch zu früh dafür.",
 };
 
-export default function ResultScreen({ entry, onReact, onRestart }: Props) {
+export default function ResultScreen({ entry, onReact, onNoteChange, onRestart }: Props) {
   const [reaction, setReaction] = useState<Reaction>(entry.reaction);
+  const [note, setNote] = useState(entry.note ?? "");
+  const [noteOpen, setNoteOpen] = useState(Boolean(entry.note));
+  const noteRef = useRef<HTMLTextAreaElement>(null);
   const feedback = entry.result === "Unklar" ? FEEDBACK_UNKLAR : FEEDBACK;
 
   function handleReact(next: "up" | "down") {
     setReaction(next);
     onReact(next);
+  }
+
+  function openNote() {
+    setNoteOpen(true);
+    requestAnimationFrame(() => noteRef.current?.focus());
+  }
+
+  function commitNote() {
+    onNoteChange(note.trim() || null);
   }
 
   return (
@@ -37,8 +50,23 @@ export default function ResultScreen({ entry, onReact, onRestart }: Props) {
           <p className="animate-fade-up font-serif text-5xl font-semibold leading-tight text-gold-light">
             {entry.result}
           </p>
-          {entry.note && (
-            <p className="animate-fade-up mt-2 text-base text-muted">{entry.note}</p>
+          {noteOpen ? (
+            <textarea
+              ref={noteRef}
+              value={note}
+              onChange={(e) => setNote(e.target.value)}
+              onBlur={commitNote}
+              placeholder="Notiz hinzufügen …"
+              rows={2}
+              className="animate-fade-up mt-2 w-full resize-none rounded-lg border border-transparent bg-transparent px-2 py-1 text-center text-base text-muted placeholder:text-muted focus:border-line focus:bg-surface focus:outline-none"
+            />
+          ) : (
+            <button
+              onClick={openNote}
+              className="animate-fade-up mt-2 text-xs uppercase tracking-[0.2em] text-muted transition-colors duration-300 hover:text-gold"
+            >
+              + Notiz hinzufügen
+            </button>
           )}
         </div>
 

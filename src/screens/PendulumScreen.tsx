@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { swingPendulum, type PendulumAnswer } from "../lib/random";
+import { hapticReveal } from "../lib/haptics";
 
 interface Props {
   onComplete: (result: string, note?: string | null) => void;
@@ -16,7 +17,10 @@ export default function PendulumScreen({ onComplete }: Props) {
   const [phase, setPhase] = useState<"swinging" | "revealed">("swinging");
 
   useEffect(() => {
-    const reveal = setTimeout(() => setPhase("revealed"), 2200);
+    const reveal = setTimeout(() => {
+      setPhase("revealed");
+      hapticReveal();
+    }, 2200);
     const complete = setTimeout(() => onComplete(result), 3100);
     return () => {
       clearTimeout(reveal);
