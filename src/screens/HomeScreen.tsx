@@ -1,5 +1,6 @@
 import type { Method } from "../types";
 import { CoinIcon, PendulumIcon, CardIcon } from "../components/icons";
+import { Logo } from "../components/Logo";
 
 interface Props {
   onSelectMethod: (method: Method) => void;
@@ -14,8 +15,9 @@ const METHODS: { method: Method; label: string; icon: typeof CoinIcon }[] = [
 export default function HomeScreen({ onSelectMethod }: Props) {
   return (
     <div className="flex min-h-dvh flex-col items-center px-6 py-12">
-      <div className="animate-fade-up pt-8 text-center">
-        <h1 className="font-serif text-5xl font-semibold tracking-wide text-gold-light">
+      <div className="animate-fade-up pt-4 text-center">
+        <Logo className="mx-auto h-16 w-16" />
+        <h1 className="mt-3 font-serif text-5xl font-semibold tracking-wide text-gold-light">
           KlarWurf
         </h1>
         <p className="mt-3 text-sm text-muted">

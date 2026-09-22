@@ -1,5 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <circle cx="32" cy="32" r="30" fill="#0a0a0a" stroke="#d4af37" stroke-width="2"/>
-  <circle cx="32" cy="32" r="20" fill="none" stroke="#d4af37" stroke-width="1.5"/>
-  <text x="32" y="40" font-family="Georgia, serif" font-size="26" fill="#d4af37" text-anchor="middle">K</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200">
+  <defs>
+    <linearGradient id="kwGold" x1="20%" y1="10%" x2="80%" y2="95%">
+      <stop offset="0%" stop-color="#f8ecc9" />
+      <stop offset="30%" stop-color="#e3cb95" />
+      <stop offset="65%" stop-color="#c9a662" />
+      <stop offset="100%" stop-color="#7c5e2e" />
+    </linearGradient>
+    <radialGradient id="kwGlow" cx="50%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="#c9a662" stop-opacity="0.35" />
+      <stop offset="100%" stop-color="#c9a662" stop-opacity="0" />
+    </radialGradient>
+  </defs>
+
+  <rect x="0" y="0" width="200" height="200" rx="44" fill="#050505" />
+  <circle cx="100" cy="96" r="66" fill="url(#kwGlow)" />
+  <circle cx="100" cy="100" r="62" fill="none" stroke="url(#kwGold)" stroke-width="3" />
+  <circle cx="100" cy="100" r="54" fill="none" stroke="#7c5e2e" stroke-width="0.75" stroke-opacity="0.5" />
+
+  <text x="100" y="130" text-anchor="middle" font-family="Georgia, 'Times New Roman', serif" font-weight="700" font-size="78" fill="url(#kwGold)">K</text>
+
+  <path d="M 140 66 L 160 44" stroke="url(#kwGold)" stroke-width="3" stroke-linecap="round" />
+  <circle cx="164" cy="40" r="6" fill="url(#kwGold)" />
+  <path d="M 148 58 Q 156 50 160 44" stroke="url(#kwGold)" stroke-width="1" stroke-opacity="0.4" fill="none" stroke-linecap="round" />
 </svg>
