@@ -13,11 +13,3 @@ export interface Entry {
   timestamp: string;
 }
 
-export const CATEGORIES = [
-  "Liebe",
-  "Beruf",
-  "Entscheidung",
-  "Sonstiges",
-] as const;
-
-export type Category = (typeof CATEGORIES)[number];

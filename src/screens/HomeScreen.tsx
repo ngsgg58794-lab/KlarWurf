@@ -19,7 +19,7 @@ export default function HomeScreen({ onSelectMethod }: Props) {
           KlarWurf
         </h1>
         <p className="mt-3 text-sm text-muted">
-          Ein Moment der Klarheit für deine Frage
+          Deine Entscheidungshilfe für deine Frage
         </p>
       </div>
 

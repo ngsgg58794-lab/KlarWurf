@@ -1,6 +1,7 @@
 import { useState } from "react";
 import type { Method } from "../types";
-import { CATEGORIES } from "../types";
+
+const DEFAULT_CATEGORY = "Allgemein";
 
 export interface CoinMeaning {
   heads: string;
@@ -21,7 +22,6 @@ const START_LABEL: Record<Method, string> = {
 
 export default function PrepareScreen({ method, onBack, onStart }: Props) {
   const [question, setQuestion] = useState("");
-  const [category, setCategory] = useState<string>(CATEGORIES[3]);
   const [headsMeaning, setHeadsMeaning] = useState("");
   const [tailsMeaning, setTailsMeaning] = useState("");
 
@@ -49,22 +49,6 @@ export default function PrepareScreen({ method, onBack, onStart }: Props) {
             className="w-full rounded-xl border border-line bg-surface px-4 py-3 text-center text-sm text-ivory placeholder:text-muted focus:border-gold focus:outline-none"
           />
 
-          <div className="flex flex-wrap justify-center gap-2">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat}
-                onClick={() => setCategory(cat)}
-                className={`rounded-full border px-4 py-1.5 text-xs transition-colors duration-300 ${
-                  category === cat
-                    ? "border-gold bg-gold/10 text-gold-light"
-                    : "border-line text-muted"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
-
           {method === "coin" && (
             <div className="flex gap-3">
               <input
@@ -87,7 +71,7 @@ export default function PrepareScreen({ method, onBack, onStart }: Props) {
       <button
         onClick={() =>
           onStart(
-            category,
+            DEFAULT_CATEGORY,
             question.trim(),
             method === "coin"
               ? { heads: headsMeaning.trim(), tails: tailsMeaning.trim() }
