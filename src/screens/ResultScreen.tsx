@@ -12,8 +12,14 @@ const FEEDBACK: Record<"up" | "down", string> = {
   down: "Dann kanntest du die Antwort wohl schon.",
 };
 
+const FEEDBACK_UNKLAR: Record<"up" | "down", string> = {
+  up: "Auch eine unklare Antwort ist eine Antwort.",
+  down: "Dann ist es vielleicht noch zu früh dafür.",
+};
+
 export default function ResultScreen({ entry, onReact, onRestart }: Props) {
   const [reaction, setReaction] = useState<Reaction>(entry.reaction);
+  const feedback = entry.result === "Unklar" ? FEEDBACK_UNKLAR : FEEDBACK;
 
   function handleReact(next: "up" | "down") {
     setReaction(next);
@@ -65,7 +71,7 @@ export default function ResultScreen({ entry, onReact, onRestart }: Props) {
 
           {(reaction === "up" || reaction === "down") && (
             <p className="animate-fade-up mt-4 text-sm text-muted">
-              {FEEDBACK[reaction]}
+              {feedback[reaction]}
             </p>
           )}
         </div>
