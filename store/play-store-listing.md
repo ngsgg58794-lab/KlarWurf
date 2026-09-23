@@ -41,7 +41,7 @@ Käufe, kein Schnickschnack.
 Lifestyle
 
 ## Kontakt-E-Mail
-REPLACE_WITH_YOUR_EMAIL
+mail@juliawimmer.de
 
 ## Datenschutzerklärung-URL
 URL zur gehosteten Version von `store/privacy-policy.html`.
